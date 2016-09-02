@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	    li{
+	    	position: relative;
+	    	width: 80px;
+	    	height: 90px;
+	    	display: inline-block;
+	    	list-style: none;
+	    	background-color: #333;
+	    	opacity: 0.8;
+	    	text-align: center;
+	    	overflow: hidden;
+	    }
+		img{			
+			height:30px;			
+		}
+		i{
+			width: 100%;
+			position: absolute;
+			top: 30px;
+			margin: 0 auto;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li><i><img src="images/1196141.png"></i></li>
+		<li><i><img src="images/1196153.png"></i></li>
+		<li><i><img src="images/1196155.png"></i></li>
+		<li><i><img src="images/1197445.png"></i></li>
+		<li><i><img src="images/1196151.png"></i></li>
+		<li><i><img src="images/1197447.png"></i></li>
+	</ul>
+	<script src="move.js"></script>
+	<script>
+		var lis = document.getElementsByTagName('li');
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].onmouseenter= function(){
+				var _this = this.getElementsByTagName('i')[0];
+				move(_this,{top:-30},function(){
+					_this.style.top = 60+'px';
+					move(_this,{'top':30});
+				});
+			}
+		}
+	</script>
+</body>
+</html>

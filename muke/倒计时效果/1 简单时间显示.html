@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>showTime</title>
+</head>
+<body>
+	<div></div>
+	<script type="text/javascript">
+	    function checktime(i){
+	    	if(i<10)
+	    		{i = "0" + i;}	    	
+	    	return i;
+	    }		
+		setInterval('showtime()',50);
+		function showtime() {
+			var myDate = new Date();
+			var year = myDate.getFullYear();
+			var month = myDate.getMonth()+1;
+			var date = myDate.getDate();
+			var d = myDate.getDay();
+			var days = new Array("星期天","星期一","星期二","星期三","星期四","星期五","星期六");
+			var h = myDate.getHours();
+			var m = myDate.getMinutes();
+			var s = myDate.getSeconds();
+			m = checktime(m);
+			s = checktime(s);
+			document.getElementsByTagName('div')[0].innerHTML = year + "年" + month + "月" + date + "日"+ days[d] + h + ":" + m + ":" + s;			
+		}
+
+	</script>
+</body>
+</html>

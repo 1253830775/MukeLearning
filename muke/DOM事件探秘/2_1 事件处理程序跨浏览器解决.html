@@ -1,0 +1,44 @@
+<!-- 跨浏览器的时间处理程序：能力检测 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="butt" id="butt">
+</body>
+</html>
+<script>
+	var eventUtil={
+		addHandler:function (element,type,handler) {		
+			if (element.addEventListener) {
+                element.addEventListener(type,handler,false);
+			}
+			else if (element.attachEvent) {
+				element.attachEvent("on"+type,handler);  
+			}
+			else{
+                element["on"+type]=handler;
+                element.onclick===element[onclick];
+			}
+		},
+		removeHandler:function (element,type,handler) {		
+			if (element.addEventListener) {
+                element.removeEventListener(type,handler,false);
+			}
+			else if (element.attachEvent) {
+				element.detachEvent("on"+type,handler);  
+			}
+			else{
+                element["on"+type]=null;
+                // element.onclick===element[onclick];
+			}
+		}
+	}
+	var butt = document.getElementById("butt");
+	function showMes(){
+		alert("这是一个button");
+	}
+    eventUtil.addHandler(butt,"click",showMes);
+</script>

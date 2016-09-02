@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+		ul li{
+			width: 200px;
+			height: 150px;
+			background-color: yellow;
+			margin-top: 20px;
+			list-style: none;
+			opacity: 0.4;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script type="text/javascript" src="move.js"></script>
+	<script>
+		var lis = document.getElementsByTagName('li');
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].onmouseover = function() {
+				var g = this;
+				move(this,{'width':400},function(){
+					move(g,{'height':300});
+				});
+			}
+			lis[i].onmouseout = function() {
+				var g = this;
+				move(this,{'width':200},function(){
+					move(g,{'height':150});
+				});
+			}
+			lis[i].timer = null;
+		}
+		
+	</script>
+</body>
+</html>

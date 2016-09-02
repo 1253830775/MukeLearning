@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body onload="countSec()">
+	<h1>操作成功</h1>
+	<span id="sec"></span><p>秒后回到主页</p><link rel="stylesheet" href="">返回
+</body>
+<script>
+     var second = 5;
+     function countSec() {
+        
+        document.getElementById("sec").innerHTML = second;
+     	second--;
+     	window.setTimeout(countSec,1000);
+     
+     	if(second<0) location.href="http://www.baidu.com";
+        
+     }
+</script>
+</html>

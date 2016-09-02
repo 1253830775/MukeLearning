@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 动画</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    li{
+	    	position: relative;
+			width: 300px;
+			height: 200px;
+			background-color: blue;
+			top: 0;
+            left: -300px;
+            margin-top: 10px;
+	    }		
+		div{
+			position: absolute;
+			width: 20px;
+			height: 50px;
+			background-color: red;			
+			left: 300px;
+			top: 75px;			
+		}
+
+	</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<div>分享</div>
+		</li>
+		<li>
+			<div>分享</div>
+		</li>
+		<li>
+			<div>分享</div>
+		</li>
+	</ul>
+	
+	<script>
+        
+        var lis = document.getElementsByTagName('li');
+		window.onload = function() {
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].onmouseover = function(){move(this,0);}
+				lis[i].onmouseout = function(){move(this,-300);}
+				lis[i].timer = null;
+			}
+
+		}
+		function move(obj,target){
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function(){
+					var speed = (target - obj.offsetLeft)/15;
+					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+					if(obj.offsetLeft==target){clearInterval(obj.timer);}
+					else{obj.style.left=obj.offsetLeft+speed+'px';}},10);				
+			}		
+	</script>
+</body>
+</html>

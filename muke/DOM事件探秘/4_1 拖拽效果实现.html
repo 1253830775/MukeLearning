@@ -1,0 +1,134 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style >
+	    *{
+	    	margin: 0;padding: 0;
+	    }
+	    #wrap{
+	    	height: 100%;
+	    	width: 100%;
+	    	position: relative;
+	    	background-color: yellow;
+	    }
+		#box{
+			height: 200px;
+			width: 300px;
+			position: absolute;
+			background-color: blue;
+			border: 1px solid black;
+			/*margin: auto;
+			top: 0; left: 0; bottom: 0; right: 0;*/
+		}
+		#head{
+			height: 40px;
+			width: 300px;
+			background-color: red;
+			cursor: move;
+		}
+		#state{
+			width: 30px;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+        #select_state{
+        	width: 30px;
+        	border: 1px solid black;
+        	display: none;
+        }
+        #select_state ul li{
+        	cursor: pointer;
+        }
+        #log{
+        	cursor: pointer;
+        }
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="box">
+		<div id="head">
+			
+		</div>
+		<div id="content">		    
+		    <div id="id">帐号：<input type="text"></div>
+		    <div id="password">密码：<input type="text"></div>
+		    <div id="login"><input type="button" value="登录" id="log"></div>	
+		    <div id="state"></div>
+		    <div id="select_state">
+		    	<ul>
+		    		<li>111</li>
+		    		<li>222</li>
+		    		<li>333</li>
+		    		<li>444</li>
+		    		<li>555</li>
+		    	</ul>
+		    </div>
+		</div>
+	</div>
+</div>
+	
+</body>
+<script>
+	var box = document.getElementById("box");
+	var head = document.getElementById("head");
+	var sel = document.getElementById("select_state");
+	var state = document.getElementById("state");
+	var lis = document.getElementsByTagName("li");
+	head.addEventListener('mousedown',down,false);
+	disX = 0;
+	disY = 0;
+	function down(event){
+		var disX = event.clientX - box.offsetLeft;
+		var disY = event.clientY - box.offsetTop;
+        document.title=box.offsetLeft;
+		document.onmousemove=function(event){		
+			var x = event.clientX;
+			var y = event.clientY;
+			
+			box.style.top = y - disY + "px";
+			box.style.left = x - disX + "px";
+			if (parseInt(box.style.top)<0) {
+				box.style.top=0;
+			}
+			else if(parseInt(box.style.top)>472){
+				box.style.top=472+"px";
+			}
+			else{}
+			if (parseInt(box.style.left)<0) {
+				box.style.left=0;
+			}
+			else if(parseInt(box.style.left)>1064){
+				box.style.left=1064+"px";
+			}
+			else{}
+		}
+		document.onmouseup=function(){
+		    document.onmousemove=null;
+		    document.onmouseup=null;
+	    }
+	}
+    
+    state.innerHTML = lis[0].innerHTML;
+    state.addEventListener("click",show,false);
+
+    function show(event){
+    	event.stopPropagation();
+    	select_state.style.display = "block";
+    	
+    	for (var i = 0; i < lis.length; i++) {
+    		lis[i].addEventListener("click",choose,false);
+            document.onclick = function(){
+            	select_state.style.display = "none";
+            }
+
+    	}
+    	function choose(event){
+    		state.innerHTML = this.innerHTML;
+    		select_state.style.display = "none";
+    	}
+    }
+</script>
+</html>

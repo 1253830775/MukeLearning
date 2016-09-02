@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div1" onclick="divevent()">
+		<input type="button" id="butt1" onclick="butt1event()">
+	</div>
+	<script>
+		function divevent() {
+			alert("这是div");
+		}
+		function butt1event(){
+			alert("这是butt");
+		}
+	</script>
+</body>
+</html>
+<!-- 事件冒泡：即事件由最具体的元素（文档中嵌套层次最深的那个节点）接收然后逐级向上传播至最不具体的那个节点（文档）。 -->
+<!-- 事件捕获：即事件由最具不体的节点（文档）接收然后逐级向下传播至最具体的那个元素（文档中嵌套层次最深的那个节点）。 -->

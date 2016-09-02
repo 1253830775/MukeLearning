@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 动画</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    #box{
+	    	position: relative;
+			width: 300px;
+			height: 200px;
+			background-color: blue;
+			top: 0;
+            left: -300px;
+	    }		
+		#outer{
+			position: absolute;
+			width: 20px;
+			height: 50px;
+			background-color: red;			
+			left: 300px;
+			top: 75px;			
+		}
+
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="outer">分享</div>
+	</div>
+	<script>
+	    var timer = null;
+		var box = document.getElementById('box');
+		var outer = document.getElementById('outer');
+		window.onload = function() {
+			box.onmouseover = function(){move(10,0);}
+			box.onmouseout = function(){move(-10,-300);}
+		}
+		function move(speed,target){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					if(box.offsetLeft==target){clearInterval(timer);}
+					else{box.style.left=box.offsetLeft+speed+'px';}},10);				
+			}		
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div1" style="height:300px;width:200px;background:red">
+		<div id="div2" style="height:100px;width:100px;background:blue"></div>
+	</div>
+	<input type="button" id="butt1" value="button1" onclick="showMes()"><!-- html事件处理程序 具有耦合性-->
+	<input type="button" id="butt2" value="button2"><!-- DOM0级事件处理程序 -->
+	<input type="button" id="butt3" value="button3"><!-- DOM2级事件处理程序 两个函数：addEventListener(event,function,bool),removeEventListener(event,function,bool) bool值为true时是事件捕获，false时是事件冒泡-->
+	<input type="button" id="butt4" value="button4">
+	<!-- IE事件处理程序提供了两个函数：attachEvent(),detachEvent()
+	默认为事件冒泡 值得注意的是IE8以下只支持IE事件处理程序，IE9、IE10 IE事件处理程序和DOM2级事件处理程序都支持，IE11只支持DOM2级事件处理程序-->
+
+
+
+	<script>
+	    function showMes(){
+	    	alert("这是一个button");
+	    }
+	    document.getElementById("butt2").onclick=function(){
+	    	alert("这是button2");
+	    }
+	    
+	    document.getElementById("butt3").addEventListener("click",showMes,false);
+	    document.getElementById("butt3").removeEventListener("click",showMes,false);
+	    document.getElementById("butt4").attachEvent('onclick',showMes);
+
+
+
+
+
+		function div1event() {
+			alert("这是div1");
+		}
+		function div2event(){
+			alert("这是div2");
+		}
+		document.getElementById("div1").addEventListener("click",div1event,true);
+		document.getElementById("div2").addEventListener("click",div2event,true);
+	</script>
+</body>
+</html>

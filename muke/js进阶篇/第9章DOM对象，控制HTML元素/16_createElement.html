@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+<body>
+<script type="text/javascript">
+var main = document.body;
+//创建链接
+function createa(url,text)
+{
+    var newa = document.createElement("a");
+    newa.href=url;
+    newa.innerHTML=text;
+    newa.style.color="red";
+    document.body.appendChild(newa);
+}
+createa("http://www.baidu.com","lalala");
+// 调用函数创建链接
+
+
+</script> 
+</body>
+</html>

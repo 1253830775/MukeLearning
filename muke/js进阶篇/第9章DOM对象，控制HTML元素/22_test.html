@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>   
+  <meta http-equiv="Content-Type" content="text/html; charset=utf8"/>   
+  <script type="text/javascript"> 
+  
+      window.onload = function(){
+                  
+     // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+         highlight();
+		
+     
+	 
+	 }
+     
+      // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+     function add(){
+     	var tr = document.createElement("tr");
+
+        var td = document.createElement("td");
+        td.innerHTML="<input type='text'>"
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        td.innerHTML="<input type='text'>"
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        td.innerHTML="<a href='javascript:;' onclick='deletetr(this)'>删除</a>"
+        tr.appendChild(td);
+
+        document.getElementById("table").tBodies[0].appendChild(tr);
+        highlight();
+     }
+    		
+   	 
+     // 创建删除函数
+     function deletetr(ths){    	
+     	document.getElementById("table").tBodies[0].removeChild(ths.parentNode.parentNode)
+     	//table默认有两个子节点,table[0]是text对象。
+     }
+     function highlight(){
+     	var trs = document.getElementById("table").tBodies[0].getElementsByTagName("tr");
+         for (var i = 1; i < trs.length; i++) {
+         	trs[i].onmouseover = function(){
+         		this.style.background = "#f2f2f2";
+         		//alert(trs[i].innerHTML);这里trs[i]是未定义的？？？
+         	}
+         	trs[i].onmouseout = function(){
+         		this.style.background = "#fff";
+         	}
+         }
+     }
+
+
+  </script> 
+ </head> 
+ <body> 
+	   <table border="1" width="50%" id="table">
+	   <tr>
+		<th>学号</th>
+		<th>姓名</th>
+		<th>操作</th>
+	   </tr>  
+
+	   <tr>
+		<td>xh001</td>
+		<td>王小明</td>
+		<td><a href="javascript:;" onclick="deletetr(this)">删除</a></td>   <!--在删除按钮上添加点击事件  -->
+	   </tr>
+
+	   <tr>
+		<td>xh002</td>
+		<td>刘小芳</td>
+		<td><a href="javascript:;" onclick="deletetr(this)">删除</a></td>   <!--在删除按钮上添加点击事件  -->
+	   </tr>  
+
+	   </table>
+	   <input type="button" value="添加一行"  onclick="add()" />   <!--在添加按钮上添加点击事件  -->
+ </body>
+</html>
+<!-- 第一步： 首先，我们创建删除函数，并在删除按钮上添加点击事件；
+
+提示: 使用removeChild()。
+
+第二步： 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+
+提示: 使用createElement()、innerHTML、appendChild()。
+
+第三步： 更改鼠标移动改变背景则可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+
+提示:
+1. 获取表格的行，getElementsByTagName 。
+2. 使用for进行循环，为每行添加事件及背景颜色设置 -->

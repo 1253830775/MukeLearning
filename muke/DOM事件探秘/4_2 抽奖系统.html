@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	    *{
+	    	margin:0;
+	    	padding:0;
+	    }
+	    /*#wrap{
+	    	position: relative;
+	    	top: 100px;
+	    	margin: 0 auto;
+	    	height: 100px;
+	    	width: 200px;
+	    	border: 1px solid blue;
+	    }*/
+		ul{
+			display: none;
+		}
+		#buttons{
+			margin: 20px auto;
+			width: 106px;
+
+		
+		}
+		#sel{
+			padding-top: 100px;
+			margin: 0 auto;
+			font-size: x-large;
+			text-align: center;
+		}
+		#start,#stop{
+			margin-left: 0px;
+			background:#036;
+			height: 30px;
+			width: 50px;
+			float:left;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	    <div id="sel"></div>
+		<ul>
+			<li>江山</li>
+			<li>郭易</li>
+			<li>周浩昌</li>
+			<li>李天培</li>
+			<li>刘劲帮</li>
+			<li>学委</li>
+			<li>班长</li>
+			<li>杨树</li>
+			<li>书记</li>
+			<li>法师</li>
+		</ul>
+	<div id="buttons">
+		<input type="button" value="开始" id="start">
+	    <input type="button" value="停止" id="stop">
+	</div>
+
+
+	
+</body>
+<script>
+    var start = document.getElementById('start');
+    var stop = document.getElementById('stop');   
+	var lis = document.getElementsByTagName('li');
+	var sel = document.getElementById('sel');
+	var timer = null;
+	var flag = 0;
+	sel.innerHTML = lis[0].innerHTML;
+	start.onclick = fnstart;
+	function fnstart(){
+		clearInterval(timer);
+		timer = setInterval(function(){sel.innerHTML = lis[Math.floor(Math.random()*(lis.length))].innerHTML;},50);
+		start.style.background = "#999";
+	}
+	stop.onclick = fnstop;
+	function fnstop(){
+		clearInterval(timer);
+		start.style.background = "#036";
+	}
+	document.onkeyup=function(event){
+		if (event.keyCode==13) {
+			if (flag==0) {
+				fnstart();
+				flag=1;
+			}
+			else{
+				fnstop();
+				flag=0;
+			}
+		}
+
+	}
+</script>
+</html>

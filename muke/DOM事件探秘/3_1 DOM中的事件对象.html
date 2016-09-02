@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div1">
+		<input type="button" value="button1" id="butt1">
+		<input type="button" value="button2" id="butt2">
+		<a href="1_1 事件冒泡.html" id="a1">跳转</a>
+		<!-- 组织了事件的默认行为，无法跳转 -->
+		<a href="1_1 事件冒泡.html" id="a2">跳转</a>
+		<!-- 未阻止事件默认行为，可以跳转 -->
+	</div>	
+</body>
+</html>
+<script>
+    function show(){
+    	alert("hello");
+    }
+	function showType(event) {
+		alert(event.type);
+		event.stopPropagation();//阻止事件冒泡
+	}
+	function showTarget(event) {
+		alert(event.target);//未阻止事件冒泡
+	}
+	function stopGoTo(event){
+		event.preventDefault();
+	}
+	document.getElementById('butt1').onclick=showType;
+	document.getElementById('butt2').onclick=showTarget;
+	document.getElementById('div1').onclick=show;
+	document.getElementById('a1').onclick=stopGoTo;
+</script>
+<!-- 时间对象event
+DOM常用属性方法：
+type,target,stopPropagation(),preventDefault() 
+IE常用属性方法：
+type,srcElement,cancelBubble,returnValue-->
